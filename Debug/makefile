@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Test_Board
+BUILD_ARTIFACT_NAME := Test_board
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Test_Board.elf \
+Test_board.elf \
 
 MAP_FILES += \
-Test_Board.map \
+Test_board.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Test_Board.list \
+Test_board.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Test_Board.elf secondary-outputs
+main-build: Test_board.elf secondary-outputs
 
 # Tool invocations
-Test_Board.elf Test_Board.map: $(OBJS) $(USER_OBJS) C:\Users\daffa\STM32CubeIDE\workspace_1.13.1\Test_Board\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Test_Board.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\daffa\STM32CubeIDE\workspace_1.13.1\Test_Board\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Test_Board.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Test_board.elf Test_board.map: $(OBJS) $(USER_OBJS) /home/lime/STM32CubeIDE/workspace_1.11.0/Test_board/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Test_board.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/lime/STM32CubeIDE/workspace_1.11.0/Test_board/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Test_board.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Test_Board.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Test_Board.list"
+Test_board.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Test_board.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Test_Board.elf Test_Board.list Test_Board.map default.size.stdout
+	-$(RM) Test_board.elf Test_board.list Test_board.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
